@@ -33,9 +33,7 @@ button:hover {
     width: 80%;
     height: 50px;
     border-top: 2px solid black;
-    display: flex;
-    align-items: center;
-    position: relative;
+    transition: transform 0.5s ease-in-out;
 }
 
 .tick {
@@ -44,6 +42,7 @@ button:hover {
     width: 2px;
     background-color: black;
     bottom: -5px;
+    transition: left 0.5s ease-in-out;
 }
 
 .tick-label {
@@ -51,7 +50,7 @@ button:hover {
     top: 10px;
     font-size: 12px;
     transform: translateX(-50%);
-    transition: opacity 0.3s ease-in-out;
+    transition: left 0.5s ease-in-out;
 }
 
 .pi-symbol {
