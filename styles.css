@@ -36,7 +36,6 @@ button:hover {
     display: flex;
     align-items: center;
     position: relative;
-    transition: transform 0.5s ease-in-out;
 }
 
 .tick {
