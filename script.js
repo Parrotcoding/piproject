@@ -17,13 +17,17 @@ function drawNumberLine() {
 
     let { start, end, interval, decimals } = zoomLevels[zoomIndex];
     let width = numberLine.clientWidth;
-    
+
+    // Draw tick marks and labels
     for (let i = start; i <= end; i += interval) {
         let position = ((i - start) / (end - start)) * width;
+        
+        // Create tick mark
         let tick = document.createElement("div");
         tick.className = "tick";
         tick.style.left = position + "px";
 
+        // Create tick label
         let label = document.createElement("div");
         label.className = "tick-label";
         label.style.left = position + "px";
@@ -56,4 +60,5 @@ function zoomOut() {
     }
 }
 
+// Initial draw
 drawNumberLine();
