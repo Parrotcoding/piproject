@@ -19,34 +19,41 @@ button:hover {
     opacity: 0.8;
 }
 
+.number-line-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+}
+
 .number-line {
     position: relative;
     width: 80%;
     height: 50px;
-    margin: auto;
     border-top: 2px solid black;
-    overflow: hidden;
-    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    position: relative;
 }
 
 .tick {
     position: absolute;
-    bottom: 0;
-    height: 20px;
+    height: 10px;
     width: 2px;
     background-color: black;
+    bottom: -5px;
 }
 
 .tick-label {
     position: absolute;
-    top: 25px;
+    top: 10px;
     font-size: 12px;
     transform: translateX(-50%);
 }
 
 .pi-symbol {
     position: absolute;
-    top: -20px;
+    bottom: 10px;
     color: red;
     font-size: 16px;
     font-weight: bold;
