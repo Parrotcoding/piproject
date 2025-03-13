@@ -20,11 +20,11 @@ function drawNumberLine() {
     let { start, end, interval, decimals } = zoomLevels[zoomIndex];
     let width = numberLine.clientWidth;
 
-    // Animate zoom effect
-    numberLine.style.transform = `scaleX(${Math.pow(1.5, zoomIndex)})`;
+    // Keep text size fixed, only increase the number of tick marks
+    let maxTicks = 20;
+    let step = Math.max(1, Math.floor((end - start) / interval / maxTicks));
 
-    // Draw tick marks and labels
-    for (let i = start; i <= end; i += interval) {
+    for (let i = start; i <= end; i += interval * step) {
         let position = ((i - start) / (end - start)) * width;
         
         // Create tick mark
