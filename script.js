@@ -8,8 +8,21 @@ const zoomLevels = [
     { start: 3.141592, end: 3.141593, interval: 0.0000001, decimals: 7 },
     { start: 3.1415926, end: 3.1415927, interval: 0.00000001, decimals: 8 },
     { start: 3.14159265, end: 3.14159266, interval: 0.000000001, decimals: 9 },
-    { start: 3.141592653, end: 3.141592654, interval: 0.0000000001, decimals: 10 }
+    { start: 3.141592653, end: 3.141592654, interval: 0.0000000001, decimals: 10 },
 ];
+
+// Extending up to 300 decimal places
+const piFull = "3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141274";
+
+for (let i = 11; i <= 300; i++) {
+    let piValue = parseFloat(piFull.substring(0, i + 2)); // Extract π up to current decimal
+    zoomLevels.push({
+        start: piValue - Math.pow(10, -i),
+        end: piValue + Math.pow(10, -i),
+        interval: Math.pow(10, -i),
+        decimals: i
+    });
+}
 
 let zoomIndex = 0;
 const numberLine = document.getElementById("numberLine");
