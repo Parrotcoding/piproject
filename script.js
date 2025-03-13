@@ -11,18 +11,6 @@ const zoomLevels = [
     { start: 3.141592653, end: 3.141592654, interval: 0.0000000001, decimals: 10 },
 ];
 
-// Manually adding up to 100 decimal places
-const piFull = "3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679";
-for (let i = 11; i <= 100; i++) {
-    let piValue = parseFloat(piFull.substring(0, i + 2));
-    zoomLevels.push({
-        start: piValue - Math.pow(10, -i),
-        end: piValue + Math.pow(10, -i),
-        interval: Math.pow(10, -i),
-        decimals: i
-    });
-}
-
 let zoomIndex = 0;
 const numberLine = document.getElementById("numberLine");
 
@@ -31,6 +19,9 @@ function drawNumberLine() {
 
     let { start, end, interval, decimals } = zoomLevels[zoomIndex];
     let width = numberLine.clientWidth;
+
+    // Animate zoom effect
+    numberLine.style.transform = `scaleX(${Math.pow(1.5, zoomIndex)})`;
 
     // Draw tick marks and labels
     for (let i = start; i <= end; i += interval) {
@@ -46,18 +37,28 @@ function drawNumberLine() {
         label.className = "tick-label";
         label.style.left = position + "px";
         label.textContent = i.toFixed(decimals);
+        label.style.opacity = 0;
+
+        // Fade in labels after rendering
+        setTimeout(() => {
+            label.style.opacity = 1;
+        }, 200);
 
         numberLine.appendChild(tick);
         numberLine.appendChild(label);
     }
 
     // Add π symbol at the correct position
-    let pi = parseFloat(piFull.substring(0, decimals + 2));
+    let pi = 3.1415926535;
     let piPosition = ((pi - start) / (end - start)) * width;
     let piSymbol = document.createElement("div");
     piSymbol.className = "pi-symbol";
     piSymbol.style.left = piPosition + "px";
     piSymbol.textContent = "π";
+
+    // Animate π symbol
+    piSymbol.style.transition = "left 0.5s ease-in-out";
+
     numberLine.appendChild(piSymbol);
 }
 
